@@ -108,5 +108,22 @@ def analyser_texte(texte):
     }
 
 
+app = FastAPI()
+
+@app.get("/", response_class=HTMLResponse)
+def accueil(request: Request, ok: bool = Depends(auth)):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.post("/generate")
+def creer_pdf(texte: str = Form(...), ok: bool = Depends(auth)):
+    if not texte.strip():
+        raise HTTPException(status_code=400, detail="Texte vide")
+    pdf = generer_pdf(texte)
+    return StreamingResponse(
+        io.BytesIO(pdf),
+        media_type="application/pdf",
+        headers={"Content-Disposition": "attachment; filename=TRACFIN_REMPLI.pdf"},
+    )
+
 
 
