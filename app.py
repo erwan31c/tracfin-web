@@ -11,7 +11,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 import secrets
 
 # NOM EXACT DU PDF (ne pas changer)
-TEMPLATE_PDF = "MODELE TRACFIN VENDEUR PHYSIQUE.pdf"
+TEMPLATE_PDF = "modele.pdf"
 
 # ----- Sécurité simple -----
 security = HTTPBasic()
@@ -65,3 +65,4 @@ def chercher(texte, motifs):
 def analyser_texte(texte):
     return {
         "reference":
+
