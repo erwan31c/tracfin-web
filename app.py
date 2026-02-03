@@ -68,6 +68,45 @@ def chercher(texte, motifs):
 
 def analyser_texte(texte):
     return {
-        "reference":
+        "reference": chercher(texte, [
+            r"référence\s*dossier\s*:\s*(.+)",
+            r"ref\s*:\s*(.+)",
+        ]),
+        "date": chercher(texte, [
+            r"fiche.*le\s*:\s*(.+)",
+            r"date\s*:\s*(\d{1,2}/\d{1,2}/\d{4})",
+        ]) or datetime.now().strftime("%d/%m/%Y"),
+        "nom": chercher(texte, [
+            r"client\s*:\s*(.+)",
+            r"nom\s*:\s*(.+)",
+        ]),
+        "date_naissance": chercher(texte, [
+            r"né le\s*(.+?)\s+à",
+        ]),
+        "lieu_naissance": chercher(texte, [
+            r"né le.+?\s+à\s+(.+)",
+        ]),
+        "nationalite": chercher(texte, [
+            r"nationalité\s*:\s*(.+)",
+        ]),
+        "situation": chercher(texte, [
+            r"situation\s*familiale\s*:\s*(.+)",
+        ]),
+        "adresse": chercher(texte, [
+            r"adresse\s*:\s*(.+)",
+        ]),
+        "telephone": chercher(texte, [
+            r"téléphone\s*:\s*(.+)",
+            r"tel\s*:\s*(.+)",
+        ]),
+        "email": chercher(texte, [
+            r"email\s*:\s*(.+)",
+        ]),
+        "justificatif": chercher(texte, [
+            r"justificatif\s*:\s*(.+)",
+        ]),
+    }
+
+
 
 
