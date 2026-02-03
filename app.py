@@ -16,6 +16,7 @@ templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # NOM EXACT DU PDF (ne pas changer)
 TEMPLATE_PDF = "modele.pdf"
+TEMPLATE_PDF_PATH = os.path.join(BASE_DIR, TEMPLATE_PDF)
 
 # ----- Sécurité simple -----
 security = HTTPBasic()
@@ -124,6 +125,7 @@ def creer_pdf(texte: str = Form(...), ok: bool = Depends(auth)):
         media_type="application/pdf",
         headers={"Content-Disposition": "attachment; filename=TRACFIN_REMPLI.pdf"},
     )
+
 
 
 
