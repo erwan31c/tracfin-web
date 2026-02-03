@@ -10,6 +10,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 import secrets
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
+
 # NOM EXACT DU PDF (ne pas changer)
 TEMPLATE_PDF = "modele.pdf"
 
@@ -65,4 +69,5 @@ def chercher(texte, motifs):
 def analyser_texte(texte):
     return {
         "reference":
+
 
